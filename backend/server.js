@@ -17,13 +17,17 @@ const mongo_url = process.env.mongo_url
 // middlewares to parse the data
 app.use(express.json())
 app.use(cookieparser())
-app.use(cors())
+app.use(cors({
+      origin: "http://localhost:5173",
+      credentials: true
+}))
 
 // routes
 const loginroute = require("./routes/loginroute")
 const registerroute = require("./routes/registerroute")
 const searchroute = require("./routes/searchroute")
 const addfriendroute = require("./routes/addfriendroute")
+const removefriendroute = require("./routes/removefriendroute")
 const getfriendsroute = require("./routes/getfriendsroute")
 const messageroute = require("./routes/messageroute")
 
@@ -31,6 +35,7 @@ app.use("/api", loginroute)
 app.use("/api", registerroute)
 app.use("/api", searchroute)
 app.use("/api", addfriendroute)
+app.use("/api", removefriendroute)
 app.use("/api", getfriendsroute)
 app.use("/api", messageroute)
 

@@ -1,0 +1,221 @@
+/* LIGHT THEME: Dribbble Style Layout */
+body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f2f5;
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+#main-regbox {
+      height: 92vh;
+      width: 85vw;
+      border-radius: 24px;
+      display: flex;
+      overflow: hidden;
+      background-color: #ffffff;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
+}
+
+/* ----------------------- */
+/* LEFT SIDE PANEL (FORM)  */
+/* ----------------------- */
+.reg-left-panel {
+      flex: 1;
+      background-color: #ffffff;
+      padding: 15px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #111b21;
+}
+
+.input-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+}
+
+.input-icon {
+      position: absolute;
+      left: 16px;
+      color: #94a3b8;
+      font-size: 16px;
+}
+
+.reg-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+}
+
+.input-right {
+      width: 100%;
+      padding: 12px 12px 12px 42px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      background-color: #f8fafc;
+      color: #111b21;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s;
+      box-sizing: border-box;
+}
+
+.input-right:focus {
+      border: 1px solid #00a884;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(0, 168, 132, 0.1);
+}
+
+.reg-submit-btn {
+      padding: 12px;
+      background-color: #00a884;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(0, 168, 132, 0.2);
+      transition: all 0.2s;
+}
+
+.reg-submit-btn:hover {
+      background-color: #008f6f;
+      box-shadow: 0 6px 20px rgba(0, 168, 132, 0.3);
+}
+
+.reg-brand-logo {
+      margin-bottom: 10px;
+}
+
+.reg-left-panel h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+}
+
+.reg-highlight-green {
+      color: #00a884;
+}
+
+.reg-subtitle {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 20px;
+}
+
+/* ------------------------- */
+/* RIGHT SIDE PANEL (DESIGN) */
+/* ------------------------- */
+.reg-right-panel {
+      flex: 1.2;
+      background: linear-gradient(135deg, #00a884 0%, #008f6f 100%);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+}
+
+.reg-right-panel::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      top: -100px;
+      right: -100px;
+}
+
+.reg-right-content {
+      z-index: 10;
+      text-align: center;
+      padding: 40px;
+}
+
+.reg-right-content h2 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+}
+
+.reg-right-content p {
+      font-size: 18px;
+      opacity: 0.9;
+      max-width: 350px;
+      margin: 0 auto;
+      line-height: 1.5;
+}
+
+
+
+/* Floating Elements */
+.float-card {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 16px 20px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      z-index: 5;
+}
+
+.card-icon-wrap {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.card-text-wrap {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+}
+
+.card-text-title {
+      font-size: 13px;
+      font-weight: 600;
+}
+
+.card-text-sub {
+      font-size: 11px;
+      opacity: 0.8;
+}
+
+/* Decorative Ring */
+.deco-ring {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: spin 40s linear infinite;
+}
+
+@keyframes spin {
+      100% {
+            transform: rotate(360deg);
+      }
+}

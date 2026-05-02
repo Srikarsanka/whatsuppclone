@@ -24,7 +24,7 @@ const loggedin = async (req, res) => {
                   secure: false,
                   sameSite: "lax",
             });
-            return res.status(200).json({ message: "login successfully" })
+            return res.status(200).json({ message: "login successfully", userId: user._id, username: user.username })
 
       }
       catch (err) {

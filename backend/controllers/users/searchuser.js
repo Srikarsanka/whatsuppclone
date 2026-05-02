@@ -8,9 +8,9 @@ const searchUser = async (req, res) => {
             // search the DB by username OR email OR phone — returns all matching users
             const foundUsers = await User.find({
                   $or: [
-                        { username: searchTerm },
-                        { email: searchTerm },
-                        { phone: searchTerm }
+                        { username: { $regex: searchTerm, $options: "i" } },
+                        { email: { $regex: searchTerm, $options: "i" } },
+                        { phone: { $regex: searchTerm, $options: "i" } }
                   ]
             })
 
@@ -47,7 +47,8 @@ const searchUser = async (req, res) => {
                   result.push({
                         _id: u._id,
                         displayName: displayName,
-                        phone: u.phone
+                        phone: u.phone,
+                        isFriend: isFriend
                   })
             }
 

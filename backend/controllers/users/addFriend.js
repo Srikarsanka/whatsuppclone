@@ -4,12 +4,14 @@ const addFriend = async (req, res) => {
       try {
 
             const { friendID } = req.params
+            // the sender id comes from the middleware auth.js req.user.id
             const loginUserID = req.user.id
             if (!friendID || !loginUserID) {
                   return res.status(400).json({ message: "Bad request" })
             }
             const sender = await user.findById(loginUserID)
             const receiver = await user.findById(friendID)
+
             if (!sender || !receiver) {
                   return res.status(404).json({ message: "User not found" })
             }

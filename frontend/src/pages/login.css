@@ -4,7 +4,7 @@ body {
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #f0f2f5; 
+      background-color: #f0f2f5;
       margin: 0;
       font-family: 'Inter', 'Segoe UI', Helvetica, Arial, sans-serif;
 }
@@ -15,7 +15,7 @@ body {
       border-radius: 24px;
       display: flex;
       overflow: hidden;
-      background-color: #ffffff; 
+      background-color: #ffffff;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
       border: 1px solid #e2e8f0;
 }
@@ -25,7 +25,7 @@ body {
 /* ----------------------- */
 .left-panel {
       flex: 1.2;
-      background-color: #f8fafc; 
+      background-color: #f8fafc;
       position: relative;
       display: flex;
       justify-content: center;
@@ -38,7 +38,7 @@ body {
       position: absolute;
       width: 450px;
       height: 450px;
-      background: radial-gradient(circle, rgba(37,211,102,0.15) 0%, rgba(37,211,102,0) 70%);
+      background: radial-gradient(circle, rgba(37, 211, 102, 0.15) 0%, rgba(37, 211, 102, 0) 70%);
       border-radius: 50%;
       z-index: 0;
 }
@@ -66,19 +66,20 @@ body {
       line-height: 1.5;
 }
 
-/* Static Background Chat Bubbles */
+
 .bg-chat-bubble {
       position: absolute;
       background-color: #ffffff;
       color: #334155;
       padding: 12px 18px;
       border-radius: 16px;
-      border-bottom-left-radius: 4px; /* Makes it look like a chat bubble */
+      border-bottom-left-radius: 4px;
+      /* Makes it look like a chat bubble */
       font-size: 13px;
       font-weight: 500;
       z-index: 2;
       border: 1px solid #e2e8f0;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 /* Static Emojis */
@@ -86,7 +87,7 @@ body {
       position: absolute;
       font-size: 28px;
       z-index: 5;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
 /* ----------------------- */
@@ -94,20 +95,20 @@ body {
 /* ----------------------- */
 /* User requested smaller mobile frame */
 .mobile-frame {
-      width: 180px; /* Reduced from 210px */
-      height: 330px; /* Reduced from 380px */
-      background-color: #efeae2; 
+      width: 180px;
+      height: 330px;
+      background-color: #efeae2;
       border-radius: 30px;
-      border: 6px solid #ffffff; 
-      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+      border: 6px solid #ffffff;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      z-index: 1; /* Lowered z-index so bubbles float above it */
+      z-index: 1;
 }
 
 .mobile-header {
-      background-color: #00a884; 
+      background-color: #00a884;
       color: white;
       padding: 12px 16px;
       display: flex;
@@ -134,10 +135,11 @@ body {
       font-weight: 600;
       font-size: 13px;
 }
+
 .mobile-status {
       display: block;
       font-size: 11px;
-      color: #e2e8f0; 
+      color: #e2e8f0;
 }
 
 .mobile-chat-area {
@@ -156,7 +158,7 @@ body {
       max-width: 80%;
       color: #111b21;
       position: relative;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .chat-time {
@@ -170,11 +172,11 @@ body {
 .friend-message {
       background-color: #ffffff;
       align-self: flex-start;
-      border-top-left-radius: 0px; 
+      border-top-left-radius: 0px;
 }
 
 .my-message {
-      background-color: #dcf8c6; 
+      background-color: #dcf8c6;
       align-self: flex-end;
       border-top-right-radius: 0px;
 }
@@ -192,7 +194,7 @@ body {
       align-items: center;
       color: #8696a0;
       font-size: 11px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .send-btn-mock {
@@ -212,7 +214,7 @@ body {
 .right-panel {
       flex: 1;
       background-color: transparent;
-      color: #111b21; 
+      color: #111b21;
       display: flex;
       flex-direction: column;
       justify-content: center;

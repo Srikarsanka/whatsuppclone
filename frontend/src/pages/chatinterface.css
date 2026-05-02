@@ -1,0 +1,252 @@
+.app-layout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      background: white;
+      color: black;
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: hidden;
+}
+
+.main-app {
+      overflow-y: scroll;
+      width: 30vw;
+      height: 100vh;
+
+      box-sizing: border-box;
+      display: flex;
+      /* Hide scrollbar for IE, Edge and Firefox */
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.main-app::-webkit-scrollbar {
+      display: none;
+}
+
+.main-app #left {
+      width: 15%;
+      height: 100%;
+
+      box-sizing: border-box;
+      background-color: #00a884;
+}
+
+.main-app #right {
+      width: 85%;
+      height: 100%;
+      background-color: #111b21;
+      box-sizing: border-box;
+      border-right: 1px solid gainsboro;
+
+}
+
+.main-app #searchbar {
+      width: 100%;
+      height: 8%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #202c33;
+      border-bottom: 1px solid gainsboro;
+}
+
+.main-app #searchbar input {
+      width: 80%;
+      height: 80%;
+      color: white;
+      border: none;
+      background-color: #202c33;
+      box-sizing: border-box;
+}
+
+#contacts {
+      width: 100%;
+      height: 92%;
+      overflow-y: auto;
+      box-sizing: border-box;
+      background-color: #111b21;
+}
+
+.contact-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 12px 15px;
+      border-bottom: 1px solid #222d34;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.2s;
+}
+
+.contact-row:hover {
+      background-color: #202c33;
+}
+
+.contact-avatar {
+      width: 40px;
+      height: 40px;
+      background-color: #667781;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+}
+
+.contact-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+}
+
+.contact-info p {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 500;
+}
+
+.contact-action {
+      font-size: 20px;
+}
+
+.classInterface {
+      overflow: hidden;
+      width: 70vw;
+      height: 100vh;
+
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+}
+
+.classInterface #chat-header {
+      background-color: #202c33;
+      color: white;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      height: 60px;
+      padding: 0 20px;
+      box-sizing: border-box;
+}
+
+.classInterface #chat-header .avatar {
+      width: 40px;
+      height: 40px;
+      background-color: #667781;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.classInterface #chat-content {
+      background-image: url("https://res.cloudinary.com/djha4r2ys/image/upload/v1777722931/09b7d802-18fc-49ad-8845-8f1dddcfdd13_slind5.png");
+      background-size: 500px;
+      background-repeat: repeat;
+      flex: 1;
+}
+
+.classInterface #message-input {
+      width: 100%;
+      height: 62px;
+      background-color: #202c33;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-sizing: border-box;
+}
+
+.classInterface #message-input input {
+      flex: 1;
+      height: 40px;
+      border-radius: 8px;
+      border: none;
+      background-color: #2a3942;
+      color: white;
+      padding: 0 15px;
+      font-size: 15px;
+      outline: none;
+}
+
+.classInterface #message-input button {
+      background: none;
+      border: none;
+      margin-left: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+/* -------------------------------------------------- */
+/* Message Bubble Styles                              */
+/* -------------------------------------------------- */
+
+/* the below style is for the chat content scroll area */
+.classInterface #chat-content {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 60px;
+      overflow-y: auto;
+      gap: 6px;
+      box-sizing: border-box;
+}
+
+/* the below style is shared between both sent and received bubbles */
+.sent,
+.received {
+      max-width: 65%;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-size: 15.5px;
+      line-height: 1.6;
+      word-wrap: break-word;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 10;
+}
+
+/* the below style is for YOUR messages - aligned to the right with green bubble */
+.sent {
+      align-self: flex-end;
+      background-color: #005c4b;
+      color: #e9edef;
+      border-bottom-right-radius: 2px;
+}
+
+/* the below style is for THEIR messages - aligned to the left with dark bubble */
+.received {
+      align-self: flex-start;
+      background-color: #202c33;
+      color: #e9edef;
+      border-bottom-left-radius: 2px;
+}
+
+/* -------------------------------------------------- */
+/* Unread Message Badge                               */
+/* -------------------------------------------------- */
+
+/* the below style is the green circle badge that shows unread message count */
+.unread-badge {
+      min-width: 20px;
+      height: 20px;
+      background-color: #00a884;
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 5px;
+      margin-left: 8px;
+}

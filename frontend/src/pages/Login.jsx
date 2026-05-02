@@ -11,11 +11,10 @@ import "./login.css"
 // Static background chat bubbles and emojis
 const backgroundBubbles = [
       { text: "Can't wait to chat! 🔥", top: "75%", left: "20%" },
-      { emojiOnly: "❤️", top: "10%", left: "90%" },
+
       { text: "Check this out 🚀", top: "65%", left: "10%", color: "lime" },
-      { text: "Check this out 🚀", top: "85%", left: "10%", color: "lime" },
-      { emojiOnly: "😎", top: "45%", left: "15%" },
-      { emojiOnly: "✨", top: "40%", left: "85%" },
+      { text: "Wow Nice 😍", top: "85%", left: "10%", color: "lime" },
+      { emojiOnly: "✨", top: "20%", left: "45%" },
 
 ];
 
@@ -37,9 +36,30 @@ function Login() {
       const handleLogin = async (e) => {
             e.preventDefault();
             try {
-                  const response = await axios.post("http://localhost:5000/api/login", { phone, password });
-                  alert("Login Successful!");
-                  navigate("/");
+                  const response = await axios.post("http://localhost:3000/api/user/login", { phone, password }, { withCredentials: true });
+                  if (response.status === 200) {
+                        localStorage.setItem("userId", response.data.userId);
+                        localStorage.setItem("username", response.data.username);
+                        alert("Login Successful!");
+                        navigate("/");
+
+                  }
+                  else {
+                        if (response.status === 400) {
+                              if (response.message === "Invalid Password") {
+                                    alert("Invalid Password")
+                              }
+                              else if (response.message === "User Not Found.Please Register First") {
+                                    alert("User Not Found.Please Register First")
+                                    navigate("/register")
+                              }
+                              else {
+                                    alert("Login Failed. Please check your phone or password.")
+                              }
+                        }
+
+                  }
+
             } catch (err) {
                   alert("Login Failed. Please check your phone or password.");
             }
@@ -79,7 +99,7 @@ function Login() {
                               initial={{ y: 50, opacity: 0 }}
                               animate={{ y: 0, opacity: 1 }}
                               transition={{ type: "spring", delay: 0.3 }}
-                              style={{ marginTop: "120px", marginLeft: "230px" }} // Shifted down and right
+                              style={{ marginTop: "200px", marginLeft: "260px" }} // Shifted down and right
                         >
                               <div className="mobile-header">
                                     <div className="mobile-avatar-container">

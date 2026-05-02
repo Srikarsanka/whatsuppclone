@@ -4,7 +4,6 @@ const getFriends = async (req, res) => {
       try {
             const loginUserID = req.user.id
 
-            // find the logged in user to get their friends array
             const me = await User.findById(loginUserID)
 
             if (!me) {
@@ -14,15 +13,15 @@ const getFriends = async (req, res) => {
             // create an empty array to hold the actual friend details
             const friendsData = []
 
-            // simple loop to get each friend's details one by one
+            // simple loop to get each friend's details one by one  friend in model 
             for (let i = 0; i < me.friends.length; i++) {
                   const friendId = me.friends[i]
-                  
+
                   // find the friend in the database by their ID
                   const friendDetails = await User.findById(friendId)
-                  
+
                   if (friendDetails) {
-                        // push only the necessary details to our array
+
                         friendsData.push({
                               _id: friendDetails._id,
                               username: friendDetails.username,
