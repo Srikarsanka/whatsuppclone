@@ -93,7 +93,6 @@ whatsapp-clone/
 │       ├── App.jsx
 │       └── main.jsx
 │
-├── docs/                          # Local documentation (not pushed to GitHub)
 ├── .gitignore
 └── README.md
 ```
