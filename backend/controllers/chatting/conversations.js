@@ -42,7 +42,7 @@ const getConversations = async (req, res) => {
 
             // the below code builds the result array with displayName and isFriend
             const result = users.map((u) => {
-                  const isFriend = me.friends.includes(u._id.toString())
+                  const isFriend = me.friends.some(friendId => friendId.toString() === u._id.toString())
                   const displayName = isFriend ? u.username : u.phone
 
                   return {

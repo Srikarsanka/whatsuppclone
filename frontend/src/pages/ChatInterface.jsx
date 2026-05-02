@@ -25,33 +25,36 @@ function ChatInterface() {
       // The below code fetches all previous conversations on page load
       // and pre-populates the contact panel
       // -----------------------------------------------------------
+      // -----------------------------------------------------------
+      // The below function fetches our past conversations
+      // -----------------------------------------------------------
+      const fetchConversations = async () => {
+            try {
+                  // the below code fetches all users we have talked to before
+                  const response = await axios.get(
+                        "http://localhost:3000/api/message/conversations/all",
+                        { withCredentials: true }
+                  );
+
+                  // the below code pre-populates the contact panel with our conversations
+                  setSearchResults(response.data);
+
+            } catch (e) {
+                  console.log("Error fetching conversations:", e);
+            }
+      };
+
       useEffect(() => {
-
-            const fetchConversations = async () => {
-                  try {
-                        // the below code fetches all users we have talked to before
-                        const response = await axios.get(
-                              "http://localhost:3000/api/message/conversations/all",
-                              { withCredentials: true }
-                        );
-
-                        // the below code pre-populates the contact panel with our conversations
-                        setSearchResults(response.data);
-
-                  } catch (e) {
-                        console.log("Error fetching conversations:", e);
-                  }
-            };
-
             fetchConversations();
-
       }, []); // empty array means this runs only ONCE when the page first loads
 
       const toggleLike = async (id, isCurrentlyFriend) => {
             // Optimistic UI update: instantly toggle the heart
             setSearchResults(prev => prev.map(user =>
                   user._id === id ? { ...user, isFriend: !isCurrentlyFriend } : user
+
             ));
+            fetchConversations();
 
             if (!isCurrentlyFriend) {
                   // Call backend to add them as a friend
@@ -83,7 +86,8 @@ function ChatInterface() {
             setSearchQuery(query);
 
             if (!query.trim()) {
-                  setSearchResults([]);
+                  // if search is cleared, fetch the old conversations again instead of showing nothing
+                  fetchConversations();
                   return;
             }
 
@@ -116,6 +120,7 @@ function ChatInterface() {
                         receiverId: activeChat._id,
                         senderId: login_id,
                         message: newMessage,
+                        createdAt: response.data.data.createdAt, // Send timestamp via socket
                   };
 
 
@@ -128,7 +133,7 @@ function ChatInterface() {
                   // 4. The below code adds the sent message to OUR OWN screen immediately
                   setMessages((prevMessages) => [
                         ...prevMessages,
-                        { sender: login_id, message: newMessage }
+                        { sender: login_id, message: newMessage, createdAt: response.data.data.createdAt }
                   ]);
 
 
@@ -190,26 +195,19 @@ function ChatInterface() {
                   // the below code gets the ID of who sent the message
                   const whoSentIt = incomingMessage.senderId;
 
-                  // the below code checks if we are currently viewing THAT person's chat
-                  // we use a function form of setState to always get the latest activeChat
-                  setMessages((prevMessages) => {
+                  // check the current activeChat using the DOM (workaround for stale closure)
+                  const currentChatId = document.getElementById("active-chat-id")?.dataset?.id;
 
-                        // check the current activeChat using the DOM (workaround for stale closure)
-                        const currentChatId = document.getElementById("active-chat-id")?.dataset?.id;
-
-                        if (currentChatId === whoSentIt) {
-                              // the below code adds the message if we are already in this chat
-                              return [...prevMessages, incomingMessage];
-                        } else {
-                              // the below code increments the unread badge count for that sender
-                              setUnreadCounts((prev) => ({
-                                    ...prev,
-                                    [whoSentIt]: (prev[whoSentIt] || 0) + 1,
-                              }));
-                              return prevMessages;
-                        }
-
-                  });
+                  if (currentChatId === whoSentIt) {
+                        // the below code adds the message if we are already in this chat
+                        setMessages((prevMessages) => [...prevMessages, incomingMessage]);
+                  } else {
+                        // the below code increments the unread badge count for that sender
+                        setUnreadCounts((prev) => ({
+                              ...prev,
+                              [whoSentIt]: (prev[whoSentIt] || 0) + 1,
+                        }));
+                  }
 
             });
 
@@ -315,9 +313,13 @@ function ChatInterface() {
                                                             // Otherwise, it is THEIR message
                                                             const messageClass = msg.sender === login_id ? "sent" : "received";
 
+                                                            // Function to format the timestamp
+                                                            const timeString = msg.createdAt ? new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : "";
+
                                                             return (
                                                                   <div key={index} className={messageClass}>
-                                                                        {msg.message}
+                                                                        <span className="message-text">{msg.message}</span>
+                                                                        <span className="message-time">{timeString}</span>
                                                                   </div>
                                                             )
                                                       })

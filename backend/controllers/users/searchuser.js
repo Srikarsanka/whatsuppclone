@@ -34,7 +34,7 @@ const searchUser = async (req, res) => {
                   }
 
                   // check if this user is your friend
-                  const isFriend = me.friends.includes(u._id.toString())
+                  const isFriend = me.friends.some(friendId => friendId.toString() === u._id.toString())
 
                   // if friend show username, if not friend show phone number
                   let displayName

@@ -4,6 +4,18 @@ A full-stack real-time chat application built to mimic the WhatsApp Web interfac
 
 ---
 
+## 📚 Technical Documentation
+
+If you want to understand exactly how the code works under the hood, check out these detailed guides:
+- [Auth & App Flow](docs/auth-and-chat-flow.md) — Explains Registration, Login, Initialization, Search, and Friend Logic.
+- [Messaging & Active Chat Logic](docs/messaging-logic.md) — Explains the Active Chat state, and the full flow of sending, receiving, and displaying messages.
+- [Socket.IO Explanation](docs/socketio-explanation.md) — A beginner-friendly breakdown of how `emit` and `on` work for real-time messaging.
+- [Toggle Friend Feature](docs/toggle-friend-explanation.md) — Explains the optimistic UI update and MongoDB `ObjectId` comparison for adding/removing friends.
+- [Axios Explanation](docs/axios-explanation.md) — Explains how the frontend communicates with the backend REST APIs.
+- [React Router DOM](docs/react-router-explanation.md) — Explains how frontend navigation and routing works.
+
+---
+
 ## 🏗️ System Architecture
 
 ```
@@ -40,6 +52,19 @@ A full-stack real-time chat application built to mimic the WhatsApp Web interfac
 
 ---
 
+## 🔄 App Workflow
+
+1. **Authentication**: Users must register and log in. A JWT (JSON Web Token) is securely issued in an HTTP-only cookie. Every backend route verifies this cookie using an `auth` middleware.
+2. **Initialization**: When the `ChatInterface` loads, it automatically asks the backend: *"Who have I talked to recently?"* The backend checks the `Messages` collection, finds all unique user IDs, and populates the left contact panel.
+3. **Friend System**: Users can search for people by name, email, or phone. If they click the heart icon, it adds that user's MongoDB `_id` to their personal `friends` array. Friends display their `username`, while non-friends only display their `phone number`.
+4. **Real-time Messaging**: 
+   - Every time a user connects, Socket.IO places them in a private "Room" named after their MongoDB `_id`.
+   - When User A sends a message to User B, it is saved to MongoDB via a standard `POST` request.
+   - Immediately after, User A's browser `emits` the message via Socket.IO directly to User B's private Room.
+   - User B's browser receives the event and instantly renders the message if the chat is open, OR increments a green unread badge if the chat is closed.
+
+---
+
 ## ✨ Features
 
 - 🔐 **JWT Authentication** — Secure login with cookie-based tokens
@@ -49,7 +74,7 @@ A full-stack real-time chat application built to mimic the WhatsApp Web interfac
 - 📜 **Message History** — All chats are stored in MongoDB and loaded on demand
 - 🔔 **Unread Message Badge** — Green badge shows unread count per contact
 - 📋 **Conversations Panel** — Auto-loads all previous conversations on startup
-- 🌙 **WhatsApp Dark Theme** — Pixel-perfect dark UI
+- 🌙 **WhatsApp Dark Theme** — Pixel-perfect dark UI with correct message tails and timestamps
 
 ---
 
@@ -93,6 +118,7 @@ whatsapp-clone/
 │       ├── App.jsx
 │       └── main.jsx
 │
+
 ├── .gitignore
 └── README.md
 ```

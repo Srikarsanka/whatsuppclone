@@ -159,7 +159,7 @@ function Login() {
 
                         <form onSubmit={handleLogin} className="login-form">
                               <div className="input-container">
-                                    <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
+                                    <FontAwesomeIcon icon={faPhone} className="input-icon" />
                                     <input
                                           type="text"
                                           placeholder="Phone Number"
