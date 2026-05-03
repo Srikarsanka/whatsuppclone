@@ -6,16 +6,17 @@ A full-stack real-time chat application built to mimic the WhatsApp Web interfac
 
 ## Screenshots
 
-*(Drag and drop your screenshots here before emailing)*
+- **Login Page:**
+  ![Login Page](https://res.cloudinary.com/djha4r2ys/image/upload/v1777795598/98895958-f85d-4fe4-8da5-ffba459584b1.png)
 
-- **Login / Register Page:**
-  *(add image here)*
+- **Register Page:**
+  ![Register Page](https://res.cloudinary.com/djha4r2ys/image/upload/v1777795648/62e116f9-0192-4f9b-8532-8894a56ee968.png)
 
 - **Main Chat Interface:**
-  *(add image here)*
+  ![Main Chat Interface](https://res.cloudinary.com/djha4r2ys/image/upload/v1777795703/046dd514-b6fd-4c48-bf9a-2a0db189f27c.png)
 
 - **Profile & Delete User:**
-  *(add image here)*
+  ![Profile](https://res.cloudinary.com/djha4r2ys/image/upload/v1777795738/a6496f0f-0caf-4fea-ab9d-82e67680c94d.png)
 
 ---
 
