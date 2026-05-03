@@ -4,6 +4,31 @@ A full-stack real-time chat application built to mimic the WhatsApp Web interfac
 
 ---
 
+## Screenshots
+
+*(Drag and drop your screenshots here before emailing)*
+
+- **Login / Register Page:**
+  *(add image here)*
+
+- **Main Chat Interface:**
+  *(add image here)*
+
+- **Profile & Delete User:**
+  *(add image here)*
+
+---
+
+## How It Works
+
+This application is built with a decoupled frontend and backend.
+1. **Frontend (React)**: Manages UI state, handles user interactions, and renders real-time updates instantly using optimistic UI patterns (so the app feels fast, just like real WhatsApp).
+2. **Backend (Node.js/Express)**: Provides REST APIs for authentication, user search, and storing messages securely.
+3. **Database (MongoDB)**: Stores user data and chat history. All messages are **encrypted with AES-256-CBC** before being saved to the database.
+4. **Real-Time Delivery (Socket.IO)**: Once a message is sent via the API, it is immediately pushed through a WebSocket connection to the receiver's private "Room" (using their MongoDB ID as the room name). If the receiver has the chat open, it appears instantly. If not, a green unread badge increments.
+
+---
+
 ## Technical Documentation
 
 If you want to understand exactly how the code works under the hood, check out these detailed guides:
