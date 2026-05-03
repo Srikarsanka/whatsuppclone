@@ -7,12 +7,17 @@ A full-stack real-time chat application built to mimic the WhatsApp Web interfac
 ## Technical Documentation
 
 If you want to understand exactly how the code works under the hood, check out these detailed guides:
-- [Auth & App Flow](docs/auth-and-chat-flow.md) — Explains Registration, Login, Initialization, Search, and Friend Logic.
-- [Messaging & Active Chat Logic](docs/messaging-logic.md) — Explains the Active Chat state, and the full flow of sending, receiving, and displaying messages.
-- [Socket.IO Explanation](docs/socketio-explanation.md) — A beginner-friendly breakdown of how `emit` and `on` work for real-time messaging.
-- [Toggle Friend Feature](docs/toggle-friend-explanation.md) — Explains the optimistic UI update and MongoDB `ObjectId` comparison for adding/removing friends.
-- [Axios Explanation](docs/axios-explanation.md) — Explains how the frontend communicates with the backend REST APIs.
-- [React Router DOM](docs/react-router-explanation.md) — Explains how frontend navigation and routing works.
+- [Auth & App Flow](docs/auth-and-chat-flow.md) — Registration, Login, JWT tokens, and app initialization
+- [Messaging Logic](docs/messaging-logic.md) — How messages are encrypted, stored, sent, received, and displayed
+- [Message Encryption](docs/message-encryption-explanation.md) — AES-256-CBC encryption and decryption explained
+- [Socket.IO Explanation](docs/socketio-explanation.md) — Real-time messaging with emit and on events
+- [Conversations](docs/conversations-explanation.md) — How the contact panel loads all past conversations
+- [Toggle Friend Feature](docs/toggle-friend-explanation.md) — Adding/removing friends with optimistic UI updates
+- [Delete User](docs/delete-user-explanation.md) — How account deletion cleans up all data
+- [Animations](docs/animations-explanation.md) — Framer Motion and CSS animations used in the UI
+- [React Concepts](docs/react-concepts-explanation.md) — Every React hook and pattern used and why
+- [Axios Explanation](docs/axios-explanation.md) — How the frontend talks to the backend APIs
+- [React Router DOM](docs/react-router-explanation.md) — Frontend navigation and routing
 
 ---
 
