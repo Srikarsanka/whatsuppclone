@@ -72,6 +72,12 @@
       overflow-y: auto;
       box-sizing: border-box;
       background-color: #111b21;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+}
+
+#contacts::-webkit-scrollbar {
+      display: none;
 }
 
 .contact-row {
@@ -87,6 +93,10 @@
 
 .contact-row:hover {
       background-color: #202c33;
+}
+
+.contact-row.active-chat {
+      background-color: #2a3942;
 }
 
 .contact-avatar {
@@ -199,6 +209,12 @@
       overflow-y: auto;
       gap: 6px;
       box-sizing: border-box;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+}
+
+.classInterface #chat-content::-webkit-scrollbar {
+      display: none;
 }
 
 /* the below style is shared between both sent and received bubbles */

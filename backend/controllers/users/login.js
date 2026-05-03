@@ -23,6 +23,7 @@ const loggedin = async (req, res) => {
                   httpOnly: true,
                   secure: false,
                   sameSite: "lax",
+                  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days in milliseconds
             });
             return res.status(200).json({ message: "login successfully", userId: user._id, username: user.username })
 

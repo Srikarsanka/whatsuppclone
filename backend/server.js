@@ -30,6 +30,8 @@ const addfriendroute = require("./routes/addfriendroute")
 const removefriendroute = require("./routes/removefriendroute")
 const getfriendsroute = require("./routes/getfriendsroute")
 const messageroute = require("./routes/messageroute")
+const getprofileroute = require("./routes/getprofileroute")
+const deleteuserroute = require("./routes/deleteuserroute")
 
 app.use("/api", loginroute)
 app.use("/api", registerroute)
@@ -38,6 +40,8 @@ app.use("/api", addfriendroute)
 app.use("/api", removefriendroute)
 app.use("/api", getfriendsroute)
 app.use("/api", messageroute)
+app.use("/api", getprofileroute)
+app.use("/api", deleteuserroute)
 
 
 const startServer = async () => {

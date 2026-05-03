@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import './chatinterface.css';
 import { io } from 'socket.io-client';
 
-import { faMagnifyingGlass, faUser, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faUser, faPaperPlane, faUserGroup, faRightFromBracket, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function ChatInterface() {
       const navigate = useNavigate();
-      const login_id = localStorage.getItem("userId");
-      const username = localStorage.getItem("username");
+      const login_id = sessionStorage.getItem("userId");
+      const username = sessionStorage.getItem("username");
 
 
       const [activeChat, setActiveChat] = useState(null);
@@ -17,6 +17,13 @@ function ChatInterface() {
       const [searchQuery, setSearchQuery] = useState('')
       const [searchResults, setSearchResults] = useState([])
       const [newMessage, setNewMessage] = useState('')
+      const [openprofile, setopenprofile] = useState(false)
+      const [email, setemail] = useState("")
+      const [dob, setdob] = useState("")
+      const [phone, setphone] = useState("")
+
+
+
       const [socket, setSocket] = useState(null);
       const [unreadCounts, setUnreadCounts] = useState({}); // the below state tracks unread messages per user
 
@@ -220,13 +227,60 @@ function ChatInterface() {
       }, [login_id]);
 
       const messageEndRef = useRef(null);
+
+      // Auto-scroll to the bottom whenever messages change
+      useEffect(() => {
+            messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, [messages]);
+
+      // the below code is for the profile
+
+      const porfile = async () => {
+            try {
+                  const response = await axios.get("http://localhost:3000/api/user/profile", { withCredentials: true });
+                  setemail(response.data.data.email)
+                  setdob(response.data.data.dob)
+                  setphone(response.data.data.phone)
+                  setopenprofile(true)
+            }
+            catch (e) {
+                  console.log(e)
+            }
+      }
+
       return (
             <>
                   {/* the below hidden element stores the active chat ID so the socket listener can read it */}
                   <div id="active-chat-id" data-id={activeChat?._id || ""} style={{ display: "none" }} />
                   <div className="app-layout">
                         <div className="main-app">
-                              <div id="left"></div>
+                              <div id="left" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px 0', justifyContent: 'space-between' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', alignItems: 'center' }}>
+                                          <div title="Friends" style={{ cursor: "pointer" }}>
+                                                <FontAwesomeIcon icon={faUserGroup} style={{ fontSize: "20px", color: "rgba(255,255,255,0.7)" }} />
+                                          </div>
+                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', alignItems: 'center' }}>
+                                          <div title="Profile" onClick={porfile} style={{
+                                                cursor: "pointer",
+                                                backgroundColor: "#111b21",
+                                                width: "40px",
+                                                height: "40px",
+                                                borderRadius: "50%",
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center"
+                                          }}>
+                                                <FontAwesomeIcon icon={faUser} style={{ fontSize: "20px", color: "white" }} />
+                                          </div>
+                                          <div title="Logout" style={{ cursor: "pointer" }} onClick={() => {
+                                                sessionStorage.clear();
+                                                navigate('/login');
+                                          }}>
+                                                <FontAwesomeIcon icon={faRightFromBracket} style={{ fontSize: "20px", color: "rgba(255,255,255,0.7)" }} />
+                                          </div>
+                                    </div>
+                              </div>
                               <div id="right">
                                     <div id="searchbar">
                                           <span>
@@ -243,7 +297,7 @@ function ChatInterface() {
                                                 searchResults.map((user) => {
                                                       return (
                                                             <div
-                                                                  className="contact-row"
+                                                                  className={`contact-row ${activeChat?._id === user._id ? 'active-chat' : ''}`}
                                                                   key={user._id}
                                                                   onClick={() => {
                                                                         setActiveChat(user);
@@ -324,6 +378,7 @@ function ChatInterface() {
                                                             )
                                                       })
                                                 }
+                                                <div ref={messageEndRef} />
                                           </div>
                                           <div id="message-input">
                                                 <input
@@ -345,6 +400,70 @@ function ChatInterface() {
                               )}
                         </div>
                   </div>
+
+                  {/* Profile Overlay */}
+                  {openprofile && (
+                        <div style={{
+                              position: "fixed",
+                              top: 0, left: 0, width: "100vw", height: "100vh",
+                              backgroundColor: "rgba(0,0,0,0.6)",
+                              display: "flex", justifyContent: "center", alignItems: "center",
+                              zIndex: 1000
+                        }}>
+                              <div style={{
+                                    backgroundColor: "#111b21",
+                                    color: "white",
+                                    width: "350px",
+                                    padding: "30px",
+                                    borderRadius: "10px",
+                                    position: "relative",
+                                    boxShadow: "0px 4px 15px rgba(0,0,0,0.5)"
+                              }}>
+                                    <div 
+                                          onClick={() => setopenprofile(false)} 
+                                          style={{ position: "absolute", top: "15px", right: "20px", cursor: "pointer" }}
+                                    >
+                                          <FontAwesomeIcon icon={faXmark} style={{ fontSize: "20px", color: "#8696a0" }} />
+                                    </div>
+                                    <h2 style={{ textAlign: "center", marginBottom: "20px", fontWeight: "400" }}>Profile</h2>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "15px", fontSize: "16px" }}>
+                                          <div><strong>Username:</strong> {username}</div>
+                                          <div><strong>Email:</strong> {email || "N/A"}</div>
+                                          <div><strong>Phone:</strong> {phone || "N/A"}</div>
+                                          <div><strong>DOB:</strong> {dob || "N/A"}</div>
+                                    </div>
+                                    <button 
+                                          onClick={async () => {
+                                                const confirmed = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
+                                                if (!confirmed) return;
+                                                try {
+                                                      await axios.delete("http://localhost:3000/api/user/delete", { withCredentials: true });
+                                                      sessionStorage.clear();
+                                                      alert("Account deleted successfully.");
+                                                      navigate("/login");
+                                                } catch (e) {
+                                                      console.log(e);
+                                                      alert("Failed to delete account.");
+                                                }
+                                          }}
+                                          style={{
+                                                marginTop: "25px",
+                                                width: "100%",
+                                                padding: "10px",
+                                                backgroundColor: "#e74c3c",
+                                                color: "white",
+                                                border: "none",
+                                                borderRadius: "8px",
+                                                fontSize: "15px",
+                                                cursor: "pointer",
+                                                fontWeight: "500"
+                                          }}
+                                    >
+                                          Delete Account
+                                    </button>
+                              </div>
+                        </div>
+                  )}
             </>
       )
 

@@ -1,10 +1,10 @@
-# 💬 WhatsApp Web Clone
+# Whatsupp Clone
 
 A full-stack real-time chat application built to mimic the WhatsApp Web interface. Users can register, log in, search for other users, add/remove friends, and send real-time messages using Socket.IO.
 
 ---
 
-## 📚 Technical Documentation
+## Technical Documentation
 
 If you want to understand exactly how the code works under the hood, check out these detailed guides:
 - [Auth & App Flow](docs/auth-and-chat-flow.md) — Explains Registration, Login, Initialization, Search, and Friend Logic.
@@ -16,7 +16,7 @@ If you want to understand exactly how the code works under the hood, check out t
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -52,7 +52,7 @@ If you want to understand exactly how the code works under the hood, check out t
 
 ---
 
-## 🔄 App Workflow
+## App Workflow
 
 1. **Authentication**: Users must register and log in. A JWT (JSON Web Token) is securely issued in an HTTP-only cookie. Every backend route verifies this cookie using an `auth` middleware.
 2. **Initialization**: When the `ChatInterface` loads, it automatically asks the backend: *"Who have I talked to recently?"* The backend checks the `Messages` collection, finds all unique user IDs, and populates the left contact panel.
@@ -65,20 +65,21 @@ If you want to understand exactly how the code works under the hood, check out t
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔐 **JWT Authentication** — Secure login with cookie-based tokens
-- 🔍 **User Search** — Search users by username, email, or phone
-- ❤️ **Add / Remove Friends** — Toggle friend status with instant UI updates
-- 💬 **Real-Time Messaging** — Powered by Socket.IO
-- 📜 **Message History** — All chats are stored in MongoDB and loaded on demand
-- 🔔 **Unread Message Badge** — Green badge shows unread count per contact
-- 📋 **Conversations Panel** — Auto-loads all previous conversations on startup
-- 🌙 **WhatsApp Dark Theme** — Pixel-perfect dark UI with correct message tails and timestamps
+- **JWT Authentication** — Secure login with cookie-based tokens
+- **User Search** — Search users by username, email, or phone
+- **Add / Remove Friends** — Toggle friend status with instant UI updates
+- **Real-Time Messaging** — Powered by Socket.IO
+- **Message History** — All chats are stored in MongoDB and loaded on demand
+- **Unread Message Badge** — Green badge shows unread count per contact
+- **Conversations Panel** — Auto-loads all previous conversations on startup
+- **WhatsApp Dark Theme** — Pixel-perfect dark UI with correct message tails and timestamps
+- **Delete Account** — Users can permanently delete their account and all associated data
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 
 ```
 whatsapp-clone/
@@ -96,7 +97,9 @@ whatsapp-clone/
 │   │       ├── login.js           # Login + issue JWT cookie
 │   │       ├── searchuser.js      # Search users
 │   │       ├── addFriend.js       # Add a friend
-│   │       └── removeFriend.js    # Remove a friend
+│   │       ├── removeFriend.js    # Remove a friend
+│   │       ├── getprofile.js      # Get user profile
+│   │       └── deleteuser.js      # Delete user account
 │   ├── model/
 │   │   ├── loginschema.js         # User mongoose model
 │   │   └── messageschema.js       # Message mongoose model
@@ -118,14 +121,13 @@ whatsapp-clone/
 │       ├── App.jsx
 │       └── main.jsx
 │
-
 ├── .gitignore
 └── README.md
 ```
 
 ---
 
-## ⚙️ Environment Variables
+## Environment Variables
 
 Create a `.env` file inside the `backend/` folder with the following:
 
@@ -143,7 +145,7 @@ JWT_SECRET=your_super_secret_jwt_key
 
 ---
 
-## 📦 Packages Used
+## Packages Used
 
 ### Backend
 
@@ -170,7 +172,7 @@ JWT_SECRET=your_super_secret_jwt_key
 
 ---
 
-## 🚀 How to Run Locally
+## How to Run Locally
 
 ### 1. Clone the repository
 ```bash
@@ -200,7 +202,7 @@ http://localhost:5173
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Auth
 | Method | Route | Description |
@@ -212,8 +214,10 @@ http://localhost:5173
 | Method | Route | Description |
 |---|---|---|
 | GET | `/api/user/search/:searchTerm` | Search users by name, email, or phone |
+| GET | `/api/user/profile` | Get logged-in user's profile |
 | POST | `/api/user/addfriend/:friendID` | Add a user as a friend |
 | POST | `/api/user/removefriend/:friendID` | Remove a user from friends |
+| DELETE | `/api/user/delete` | Delete user account and all messages |
 
 ### Messages
 | Method | Route | Description |
@@ -224,16 +228,16 @@ http://localhost:5173
 
 ---
 
-## 🚢 Deployment
+## Deployment
 
-- **Frontend** → Deploy on [Vercel](https://vercel.com)
-- **Backend** → Deploy on [Render](https://render.com)
-- **Database** → [MongoDB Atlas](https://cloud.mongodb.com) (already cloud-hosted)
+- **Frontend** — Deploy on [Vercel](https://vercel.com)
+- **Backend** — Deploy on [Render](https://render.com)
+- **Database** — [MongoDB Atlas](https://cloud.mongodb.com) (already cloud-hosted)
 
-> ⚠️ Remember to update the API base URL in the frontend from `http://localhost:3000` to your Render backend URL before deploying.
+> Remember to update the API base URL in the frontend from `http://localhost:3000` to your Render backend URL before deploying.
 
 ---
 
-## 👨‍💻 Built By
+## Built By
 
 Srikar Sanka — [@Srikarsanka](https://github.com/Srikarsanka)

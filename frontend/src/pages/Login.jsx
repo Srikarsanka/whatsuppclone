@@ -38,8 +38,8 @@ function Login() {
             try {
                   const response = await axios.post("http://localhost:3000/api/user/login", { phone, password }, { withCredentials: true });
                   if (response.status === 200) {
-                        localStorage.setItem("userId", response.data.userId);
-                        localStorage.setItem("username", response.data.username);
+                        sessionStorage.setItem("userId", response.data.userId);
+                        sessionStorage.setItem("username", response.data.username);
                         alert("Login Successful!");
                         navigate("/");
 
