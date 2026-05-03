@@ -27,22 +27,7 @@ This application is built with a decoupled frontend and backend.
 3. **Database (MongoDB)**: Stores user data and chat history. All messages are **encrypted with AES-256-CBC** before being saved to the database.
 4. **Real-Time Delivery (Socket.IO)**: Once a message is sent via the API, it is immediately pushed through a WebSocket connection to the receiver's private "Room" (using their MongoDB ID as the room name). If the receiver has the chat open, it appears instantly. If not, a green unread badge increments.
 
----
 
-## Technical Documentation
-
-If you want to understand exactly how the code works under the hood, check out these detailed guides:
-- [Auth & App Flow](docs/auth-and-chat-flow.md) — Registration, Login, JWT tokens, and app initialization
-- [Messaging Logic](docs/messaging-logic.md) — How messages are encrypted, stored, sent, received, and displayed
-- [Message Encryption](docs/message-encryption-explanation.md) — AES-256-CBC encryption and decryption explained
-- [Socket.IO Explanation](docs/socketio-explanation.md) — Real-time messaging with emit and on events
-- [Conversations](docs/conversations-explanation.md) — How the contact panel loads all past conversations
-- [Toggle Friend Feature](docs/toggle-friend-explanation.md) — Adding/removing friends with optimistic UI updates
-- [Delete User](docs/delete-user-explanation.md) — How account deletion cleans up all data
-- [Animations](docs/animations-explanation.md) — Framer Motion and CSS animations used in the UI
-- [React Concepts](docs/react-concepts-explanation.md) — Every React hook and pattern used and why
-- [Axios Explanation](docs/axios-explanation.md) — How the frontend talks to the backend APIs
-- [React Router DOM](docs/react-router-explanation.md) — Frontend navigation and routing
 
 ---
 
