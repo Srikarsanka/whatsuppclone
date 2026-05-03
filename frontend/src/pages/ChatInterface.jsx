@@ -256,8 +256,17 @@ function ChatInterface() {
                         <div className="main-app">
                               <div id="left" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px 0', justifyContent: 'space-between' }}>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', alignItems: 'center' }}>
-                                          <div title="Friends" style={{ cursor: "pointer" }}>
-                                                <FontAwesomeIcon icon={faUserGroup} style={{ fontSize: "20px", color: "rgba(255,255,255,0.7)" }} />
+                                          <div title="Friends" style={{ 
+                                                cursor: "pointer",
+                                                backgroundColor: "#111b21",
+                                                width: "40px",
+                                                height: "40px",
+                                                borderRadius: "50%",
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center" 
+                                          }}>
+                                                <img src={"https://res.cloudinary.com/djha4r2ys/image/upload/v1777795392/f6eb0a7f-fed8-457a-af2c-59e3d8811674.png"} style={{ width: "22px", height: "22px", objectFit: "contain" }} alt="WhatsApp" />
                                           </div>
                                     </div>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', alignItems: 'center' }}>
@@ -419,8 +428,8 @@ function ChatInterface() {
                                     position: "relative",
                                     boxShadow: "0px 4px 15px rgba(0,0,0,0.5)"
                               }}>
-                                    <div 
-                                          onClick={() => setopenprofile(false)} 
+                                    <div
+                                          onClick={() => setopenprofile(false)}
                                           style={{ position: "absolute", top: "15px", right: "20px", cursor: "pointer" }}
                                     >
                                           <FontAwesomeIcon icon={faXmark} style={{ fontSize: "20px", color: "#8696a0" }} />
@@ -432,7 +441,7 @@ function ChatInterface() {
                                           <div><strong>Phone:</strong> {phone || "N/A"}</div>
                                           <div><strong>DOB:</strong> {dob || "N/A"}</div>
                                     </div>
-                                    <button 
+                                    <button
                                           onClick={async () => {
                                                 const confirmed = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
                                                 if (!confirmed) return;
