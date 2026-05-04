@@ -242,17 +242,7 @@ http://localhost:5173
 | GET | `/api/message/conversations/all` | Get all users you have chatted with |
 | GET | `/api/message/:receiverId` | Get all messages between you and a user |
 
----
 
-## Deployment
-
-- **Frontend** — Deploy on [Vercel](https://vercel.com)
-- **Backend** — Deploy on [Render](https://render.com)
-- **Database** — [MongoDB Atlas](https://cloud.mongodb.com) (already cloud-hosted)
-
-> Remember to update the API base URL in the frontend from `http://localhost:3000` to your Render backend URL before deploying.
-
----
 
 ## Built By
 
