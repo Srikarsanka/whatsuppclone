@@ -4,7 +4,7 @@ A full-stack real-time chat application built to mimic the WhatsApp Web interfac
 
 ### Live Demo
 - **Frontend:** [https://whatsupp-liart.vercel.app/login](https://whatsupp-liart.vercel.app/login)
-- **Backend:** `[Backend Link Here]`
+- **Backend:** [https://whatsuppbackend.onrender.com](https://whatsuppbackend.onrender.com)
 
 ---
 
