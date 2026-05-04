@@ -36,7 +36,7 @@ function Login() {
       const handleLogin = async (e) => {
             e.preventDefault();
             try {
-                  const response = await axios.post("http://localhost:3000/api/user/login", { phone, password }, { withCredentials: true });
+                  const response = await axios.post("https://whatsuppbackend.onrender.com/api/user/login", { phone, password }, { withCredentials: true });
                   if (response.status === 200) {
                         sessionStorage.setItem("userId", response.data.userId);
                         sessionStorage.setItem("username", response.data.username);

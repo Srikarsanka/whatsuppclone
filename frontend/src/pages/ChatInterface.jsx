@@ -39,7 +39,7 @@ function ChatInterface() {
             try {
                   // the below code fetches all users we have talked to before
                   const response = await axios.get(
-                        "http://localhost:3000/api/message/conversations/all",
+                        "https://whatsuppbackend.onrender.com/api/message/conversations/all",
                         { withCredentials: true }
                   );
 
@@ -66,7 +66,7 @@ function ChatInterface() {
             if (!isCurrentlyFriend) {
                   // Call backend to add them as a friend
                   try {
-                        await axios.post(`http://localhost:3000/api/user/addfriend/${id}`, {}, { withCredentials: true });
+                        await axios.post(`https://whatsuppbackend.onrender.com/api/user/addfriend/${id}`, {}, { withCredentials: true });
                   } catch (err) {
                         console.error("Failed to add friend", err);
                         // Revert if it fails
@@ -77,7 +77,7 @@ function ChatInterface() {
             } else {
                   // Call backend to remove them as a friend
                   try {
-                        await axios.post(`http://localhost:3000/api/user/removefriend/${id}`, {}, { withCredentials: true });
+                        await axios.post(`https://whatsuppbackend.onrender.com/api/user/removefriend/${id}`, {}, { withCredentials: true });
                   } catch (err) {
                         console.error("Failed to remove friend", err);
                         // Revert if it fails
@@ -99,7 +99,7 @@ function ChatInterface() {
             }
 
             try {
-                  const response = await axios.get(`http://localhost:3000/api/user/search/${query}`, { withCredentials: true });
+                  const response = await axios.get(`https://whatsuppbackend.onrender.com/api/user/search/${query}`, { withCredentials: true });
                   setSearchResults(response.data);
             } catch (err) {
                   setSearchResults([]);
@@ -116,7 +116,7 @@ function ChatInterface() {
             try {
                   // 1. Send the message to the database via API
                   const response = await axios.post(
-                        `http://localhost:3000/api/message/send/${receiverId}`,
+                        `https://whatsuppbackend.onrender.com/api/message/send/${receiverId}`,
                         { message: newMessage },
                         { withCredentials: true }
                   );
@@ -167,7 +167,7 @@ function ChatInterface() {
                   try {
                         // the below code fetches all old messages between you and the selected user
                         const response = await axios.get(
-                              `http://localhost:3000/api/message/${activeChat._id}`,
+                              `https://whatsuppbackend.onrender.com/api/message/${activeChat._id}`,
                               { withCredentials: true }
                         );
 
@@ -188,7 +188,7 @@ function ChatInterface() {
       useEffect(() => {
 
             // 1. Connect to the backend server
-            const newSocket = io('http://localhost:3000');
+            const newSocket = io('https://whatsuppbackend.onrender.com');
             setSocket(newSocket);
 
             // 2. Tell the backend server our user ID to join our personal room
@@ -237,7 +237,7 @@ function ChatInterface() {
 
       const porfile = async () => {
             try {
-                  const response = await axios.get("http://localhost:3000/api/user/profile", { withCredentials: true });
+                  const response = await axios.get("https://whatsuppbackend.onrender.com/api/user/profile", { withCredentials: true });
                   setemail(response.data.data.email)
                   setdob(response.data.data.dob)
                   setphone(response.data.data.phone)
@@ -446,7 +446,7 @@ function ChatInterface() {
                                                 const confirmed = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
                                                 if (!confirmed) return;
                                                 try {
-                                                      await axios.delete("http://localhost:3000/api/user/delete", { withCredentials: true });
+                                                      await axios.delete("https://whatsuppbackend.onrender.com/api/user/delete", { withCredentials: true });
                                                       sessionStorage.clear();
                                                       alert("Account deleted successfully.");
                                                       navigate("/login");

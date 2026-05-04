@@ -32,7 +32,7 @@ function Register() {
                   return;
             }
             try {
-                  const response = await axios.post("http://localhost:3000/api/user/register", { username, email, password, repassword, dob, phone });
+                  const response = await axios.post("https://whatsuppbackend.onrender.com/api/user/register", { username, email, password, repassword, dob, phone });
                   if (response.status === 200) {
                         alert("Registration Successful!")
                         navigate("/login")
